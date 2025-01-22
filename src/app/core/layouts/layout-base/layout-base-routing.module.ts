@@ -2,7 +2,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from 'src/app/pages/home/home.component';
-import { ChampionsListComponent } from 'src/app/pages/champions-list/champions-list.component';
 import { SummonerSpellsComponent } from 'src/app/pages/summoner-spells/summoner-spells.component';
 import { AuthGuard } from '../../guards/auth.guard';
 
@@ -17,20 +16,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('../../../pages/home/home.module').then(
             (m) => m.HomeModule
-          ),
-      },
-    ],
-  },
-  {
-    path: 'champions-list',
-    canActivate: [AuthGuard],
-    component: ChampionsListComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('../../../pages/champions-list/champions-list.module').then(
-            (m) => m.ChampionsListModule
           ),
       },
     ],
