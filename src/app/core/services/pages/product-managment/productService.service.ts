@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +25,12 @@ export class ProductServiceService {
     return this.http.get<any>(this.apiUrl, { headers });
   }
 
+
+  // getProducts(authToken: string): Observable<any> {
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${authToken}`
+  //   });
+
+  //   return this.http.get<any>(this.baseUrl, { headers });
+  // }
 }

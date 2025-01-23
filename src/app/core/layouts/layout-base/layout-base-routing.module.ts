@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from 'src/app/pages/home/home.component';
-import { SummonerSpellsComponent } from 'src/app/pages/summoner-spells/summoner-spells.component';
+import { ProductManagementComponent } from 'src/app/pages/product-management/product-management.component';
 import { AuthGuard } from '../../guards/auth.guard';
 
 const routes: Routes = [
@@ -21,15 +21,15 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'summoner-list',
+    path: 'product-management',
     canActivate: [AuthGuard],
-    component: SummonerSpellsComponent,
+    component: ProductManagementComponent,
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('../../../pages/summoner-spells/summoner-spells.module').then(
-            (m) => m.SummonerSpellsModule
+          import('../../../pages/product-management/product-management.module').then(
+            (m) => m.ProductManagementModule
           ),
       },
     ],

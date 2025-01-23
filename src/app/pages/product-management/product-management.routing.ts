@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SummonerSpellsComponent } from './summoner-spells.component';
+import { ProductManagementComponent } from './product-management.component';
 
 const routes: Routes = [
-  { path: '', component: SummonerSpellsComponent}
+  { path: '', component: ProductManagementComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SummonerSpellsRoutes { }
+export class ProductManagementsRoutes { }
 
 

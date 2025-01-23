@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  userLogin: { userName: string; password: string } = { userName: '', password: '' };
+ // userLogin: { userName: string; password: string } = { userName: '', password: '' };
 
   authKey: string = '';
   isLoading: boolean = false;
@@ -20,42 +20,33 @@ export class AuthComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.authService.logout();
+    this.authKey = '';
   }
 
+
   login() {
-    this.isLoading = true;
-
-    // if (!this.authKey.trim()) {
-    //   alert('Authorization key is required.');
-    //   return;
-    // }
-
-    // this.isLoading = true;
-    // this.authService.setAuthKey(this.authKey);
-    // this.isLoading = false;
-
-    // this.router.navigate(['/home']);
-
-    if (!this.authKey.trim() || !this.userLogin.userName || !this.userLogin.password) {
-      alert('Authorization key, username, and password are required.');
-      this.isLoading = false;
+    if (!this.authKey.trim()) {
+      alert('Authorization token is required.');
       return;
     }
 
-    // Salva a chave de autenticação
-    this.authService.setAuthKey(this.authKey);
+    this.isLoading = true;
 
-    // Simula um processo de autenticação e redireciona
-    setTimeout(() => {
-      console.log('Usuário autenticado:', this.userLogin);
+    this.authService.validateAuthToken(this.authKey).subscribe(
+      () => {
+        // Token válido: Salva no localStorage e redireciona
+        localStorage.setItem('authKey', this.authKey); // Armazena o token apenas após validação
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        // Token inválido: Mostra alerta
+        alert('Invalid authorization token.');
+        console.error('Login error:', error);
+      }
+    ).add(() => {
       this.isLoading = false;
-
-      // Redireciona para a página principal
-      this.router.navigate(['/home']);
-    }, 1000);
-
-
-
+    });
   }
 
   reset(): void {

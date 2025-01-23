@@ -15,33 +15,16 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="now-ui-icons users_single-02"></i></span>
               </div>
-              <input type="text" id="login-username" autofocus name="username"
-                placeholder="userName"
-                autocomplete="username"
-                class="form-control"
-                [ngClass]="{'is-valid': f.submitted && !isInvalid && !username.invalid, 'is-invalid': f.submitted && (isInvalid || username.invalid)}"
-                [(ngModel)]="userLogin.userName"
-                #username="ngModel"
-                required
-                (focus)="focus = true"
-                (blur)="focus = false" />
-              <span class="invalid-feedback" *ngIf="f.submitted && !username.valid">
-                User Name
-              </span>
 
-            </div>
-            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="now-ui-icons ui-1_lock-circle-open"></i></span>
-              </div>
-              <input type="password" id="login-password" name="password"
-                placeholder="password" autocomplete="current-password"
+              <input type="text" id="auth-key" name="authKey" placeholder="Authorization Token"
                 class="form-control"
-                [ngClass]="{'is-valid': f.submitted && password.valid, 'is-invalid' : f.submitted && !password.valid}"
-                [(ngModel)]="userLogin.password" #password="ngModel" required (focus)="focus1=true"
-                (blur)="focus1=false" />
-              <span class="invalid-feedback" *ngIf="f.submitted && !password.valid">
-                Password
+                [(ngModel)]="authKey"
+                required
+                (focus)="focus2 = true"
+                (blur)="focus2 = false"
+              />
+              <span class="invalid-feedback" *ngIf="f.submitted && !authKey">
+                Authorization Token is required
               </span>
             </div>
           </div>
