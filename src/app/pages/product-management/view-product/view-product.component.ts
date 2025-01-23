@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ProductManager } from 'src/app/core/models/pages/product-manager/product-manager';
 
 @Component({
   selector: 'app-view-product',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewProductComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: ProductManager,
+    public dialogRef: MatDialogRef<ViewProductComponent>,
+  ) { }
 
   ngOnInit() {
+    console.log(this.data);
   }
 
 }

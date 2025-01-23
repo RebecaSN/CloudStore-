@@ -1,0 +1,85 @@
+.app-view-compare {
+  .mat-dialog-content {
+    padding: 10px !important;
+    .container {
+      max-width: 100% !important;
+      .mat-card {
+        padding: 0 0 10px !important;
+        .title {
+          font-size: 14px;
+          width: 100%;
+          padding: 0 10px 10px;
+        }
+        .card-body {
+          padding: 0;
+        }
+      }
+
+      .mat-accordion {
+        width: 100%;
+        margin-bottom: 15px;
+        .mat-expansion-panel-header {
+          background-color: #c3c3c3 !important;
+          &.mat-expanded {
+            height: 48px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+        .mat-list-base {
+          .mat-list-item {
+            font-size: 12px !important;
+            border-bottom: 1px solid #c3c3c3 !important;
+            height: 30px !important;
+            line-height: normal !important;
+            .mat-list-item-content {
+              justify-content: space-between !important;
+            }
+          }
+
+          .mat-list-option {
+            .mat-list-item-content {
+              justify-content: space-between !important;
+            }
+          }
+        }
+      }
+    }
+
+    .mat-h4,
+    h4,
+    .h4 {
+      padding-right: 15px !important;
+    }
+    .mat-radio-button {
+      padding-right: 10px !important;
+    }
+  }
+
+  .deferred-select-placeholder-container {
+    display: flex;
+    align-items: center;
+  }
+
+  /* used for both internal and external spinner versions */
+  .deferred-select-placeholder-container > span {
+    flex: 1;
+  }
+
+  /* only needed if using internal loading spinner */
+  ::ng-deep .hide-deferred-select-dummy-option {
+    display: none !important;
+  }
+}
+
+::ng-deep .mat-list-base .mat-list-item .mat-list-item-content,
+.mat-list-base .mat-list-option .mat-list-item-content {
+  display: fleximportant;
+  flex-direction: rowimportant;
+  align-items: centerimportant;
+  box-sizing: border-boximportant;
+  padding: 0 16pximportant;
+  position: relativeimportant;
+  height: inheritimportant;
+  justify-content: space-between !important;
+}

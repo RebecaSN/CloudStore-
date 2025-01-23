@@ -5,8 +5,7 @@
     </div>
   </div>
 
-  <app-dynamic-panel-body [title]="true" [titleLabel]="''" [showBackground]="true"
-    [backgroundImage]="'assets/images/background.jpg'">
+  <app-dynamic-panel-body [title]="true" [titleLabel]="''">
 
     <div fxLayout="row" fxLayoutAlign="center" class="center-card">
       <div fxFlex="80" class="main-content">
@@ -32,23 +31,24 @@
 
           <div fxFlex="50">
             <div class="container">
-
               <mat-grid-list cols="2" rowHeight="1:1" class="grid-list">
                 <mat-grid-tile>
-                  <mat-card class="card" routerLink="/champions-list"
-                    style="background-image: url('assets/images/lol-campions.jpg'); background-size: cover; background-position: center;">
-                    <div class="overlay">
-                      <h2>Login</h2>
-                      <p></p>
-                    </div>
-                  </mat-card>
+                  <a href="https://www.cloudonix.com/" target="_blank">
+                    <mat-card class="card"
+                      style="background-image: url('assets/images/cloudonix-website.png'); background-size: cover; background-position: center;">
+                      <div class="overlay">
+                        <h2>Cloudonix WebSite </h2>
+                        <p> Get to know more about our services on our website, click hero to see!</p>
+                      </div>
+                    </mat-card>
+                  </a>
                 </mat-grid-tile>
                 <mat-grid-tile>
                   <mat-card class="card" routerLink="/product-management">
-                    <img src="assets/images/summon.png" alt="Imagem de Feitiços de Invocador">
+                    <img src="assets/images/project-list.png" alt="Imagem de Feitiços de Invocador">
                     <div class="overlay">
                       <h2>Products</h2>
-                      <p>Discover the summoner spells available in the game</p>
+                      <p>Edit, create and delete our product list</p>
                     </div>
                   </mat-card>
                 </mat-grid-tile>

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { fadeInOut } from 'src/app/core/services/utilities/animations.service';
 import { TableBtn } from '../components/interface/table/table-btn';
-import { ProductServiceService } from 'src/app/core/services/pages/product-managment/productService.service';
+import { ProductService } from 'src/app/core/services/pages/product-managment/productService.service';
 import { ProductManager } from 'src/app/core/models/pages/product-manager/product-manager';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -26,7 +26,7 @@ export class ProductManagementComponent implements OnInit {
     'index',
     'sku',
     'name',
-    'price',
+    'cost',
     'actions'
   ];
 
@@ -36,7 +36,7 @@ export class ProductManagementComponent implements OnInit {
 
 
   constructor(
-    private productService: ProductServiceService,
+    private productService: ProductService,
     public dialog: MatDialog,
   ) {
     this.dataSource = new MatTableDataSource<ProductManager>();
@@ -78,14 +78,16 @@ export class ProductManagementComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     this.loadDataSource();
   }
 
   loadDataSource():void{
     this.productService.getProducts().subscribe(result =>{
+      console.log(result)
       this.dataSource = new MatTableDataSource<ProductManager>(result);
 
-      // Configurar filtros e paginação (se aplicável)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
@@ -106,7 +108,7 @@ export class ProductManagementComponent implements OnInit {
     const dialogRef = this.dialog.open(MaintenanceProductComponent, {
       disableClose: true,
       panelClass: 'my-dialog',
-      // data: { data: arg }
+      data: null
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -121,7 +123,7 @@ export class ProductManagementComponent implements OnInit {
     const dialogRef = this.dialog.open(MaintenanceProductComponent, {
       disableClose: true,
       panelClass: 'my-dialog',
-      data: { data: arg }
+      data: arg
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -136,7 +138,7 @@ export class ProductManagementComponent implements OnInit {
     const dialogRef = this.dialog.open(ViewProductComponent, {
       disableClose: true,
       panelClass: 'my-dialog',
-      data: { data: arg }
+      data: arg
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -151,12 +153,14 @@ export class ProductManagementComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteProductComponent, {
       disableClose: true,
       panelClass: 'my-dialog',
-      data: { data: arg }
+      data: arg
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result === true) {
+        console.log('Deleted');
         this.paginator.firstPage();
+        this.loadDataSource();
       }
     });
 

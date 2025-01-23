@@ -1,3 +1,13 @@
-<p>
-  delete-product works!
-</p>
+<h2 mat-dialog-title>Delete a Product</h2>
+
+<mat-dialog-content>
+
+  <h5 [innerHTML]="'Are you sure you want to delete the product <b>' + data.name + '</b>?'"></h5>
+
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayout="row">
+  <div fxFlex align="end">
+    <button mat-raised-button mat-dialog-close class="defaul">{{'Cancel' }}</button>
+    <button mat-raised-button color="success" class="success" (click)="confirm()" type="submit">{{'Confirm'}}</button>
+  </div>

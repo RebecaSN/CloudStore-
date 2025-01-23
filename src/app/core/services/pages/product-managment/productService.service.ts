@@ -6,7 +6,7 @@ import { AuthService } from '../../auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductServiceService {
+export class ProductService {
 
   private apiUrl = 'http://rest-items.research.cloudonix.io/items';
 
@@ -25,12 +25,26 @@ export class ProductServiceService {
     return this.http.get<any>(this.apiUrl, { headers });
   }
 
+  createProduct(product: any): Observable<any> {
+    const authKey = this.authService.getAuthKey();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authKey}`);
 
-  // getProducts(authToken: string): Observable<any> {
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${authToken}`
-  //   });
+    return this.http.post<any>(this.apiUrl, product, { headers });
+  }
 
-  //   return this.http.get<any>(this.baseUrl, { headers });
-  // }
+  editProduct(productId: number, updatedProduct: any): Observable<any> {
+    const authKey = this.authService.getAuthKey();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authKey}`);
+    const url = `${this.apiUrl}/${productId}`;
+
+    return this.http.patch<any>(url, updatedProduct, { headers });
+  }
+
+  deleteProduct(productId: number): Observable<void> {
+    const authKey = this.authService.getAuthKey();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authKey}`);
+    const url = `${this.apiUrl}/${productId}`;
+
+    return this.http.delete<void>(url, { headers });
+  }
 }

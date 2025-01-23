@@ -9,16 +9,27 @@ import { AgGridModule } from 'ag-grid-angular';
 import { MaintenanceProductComponent } from './maintenance-product/maintenance-product.component';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { ViewProductComponent } from './view-product/view-product.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DynamicInputModule } from '../components/dynamic-input/dynamic-input.module';
+import { DynamicSelectModule } from '../components/dynamic-select/dynamic-select.module';
+
 @NgModule({
   imports: [
     CommonModule,
     ProductManagementsRoutes,
     FlexLayoutModule,
 
+    FormsModule,
+    ReactiveFormsModule,
+
     AngularMaterialModule,
     DynamicPanelBodyModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+
+    DynamicInputModule,
+    DynamicSelectModule,
   ],
+
   declarations: [
     ProductManagementComponent,
     MaintenanceProductComponent,

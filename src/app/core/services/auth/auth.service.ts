@@ -30,11 +30,7 @@ export class AuthService {
   }
 
   getAuthKey(): string | null {
-    // if (!this.authKey) {
-    //   this.authKey = localStorage.getItem('authKey') || null;
-    // }
-    // return this.authKey;
-    return localStorage.getItem('authKey'); // Recupera o token armazenado
+    return localStorage.getItem('authKey');
   }
 
   isAuthenticated(): boolean {
@@ -42,7 +38,6 @@ export class AuthService {
   }
 
   logout(): void {
-    //this.authKey = null;
     localStorage.removeItem('authKey');
     this.router.navigate(['/sign-in']);
   }
