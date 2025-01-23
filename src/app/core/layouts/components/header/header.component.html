@@ -1,8 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
   <div class="container-fluid">
     <div class="navbar-wrapper">
+      <div class="navbar-toggle">
+        <button type="button" class="navbar-toggler" (click)="sidebarToggle()">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
     </div>
-    <button class="navbar-toggler" type="button"
+    <button class="navbar-toggler" type="button" (click)="collapse()" [attr.aria-expanded]="!isCollapsed"
       aria-controls="collapseExample">
       <span class="navbar-toggler-bar navbar-kebab"></span>
       <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -14,19 +21,36 @@
         <li class="nav-item">
           <mat-nav-list class="list-horizontal">
             <mat-list-item>
-              <button mat-menu-item matTooltip="Active User!">
+              <button mat-menu-item [matMenuTriggerFor]="claimsmenu">
                 <mat-icon fontSet="fa" fontIcon="fa-user"></mat-icon>
-                 Your Name
+                Your Name Here
               </button>
             </mat-list-item>
             <mat-menu #claimsmenu="matMenu" [overlapTrigger]="false">
-              <button mat-menu-item >
+              <button mat-menu-item (click)="logout()">
                 <mat-icon fontSet="fa" fontIcon="fa-sign-out"></mat-icon>
-
+                Logout
               </button>
             </mat-menu>
           </mat-nav-list>
         </li>
+        <!-- <li class="nav-item">
+          <mat-form-field *ngIf="false" class="full-width mat-select-hide-underline" appearance="outline" fxFlex>
+            <mat-select #selectedLanguage [compareWith]="objectComparisonFunction" [value]="language.culture"
+              (valueChange)="selectLanguage($event)">
+              <mat-select-trigger>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding: 0">
+                  <img [src]="language.img" class="flag" />
+                </div>
+              </mat-select-trigger>
+              <mat-option *ngFor="let opt of languages" [value]="opt">
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+                  <img [src]="opt.img" class="flag" />
+                </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </li> -->
       </ul>
     </div>
   </div>

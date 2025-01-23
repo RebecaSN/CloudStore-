@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SummonerSpell } from 'src/app/core/models/pages/summoner-spells/summonerSpell';
@@ -10,11 +10,15 @@ const summonersData = require('src/assets/json/summoner_spell_info.json');
 })
 export class SummonerSpellsDataService {
 
-  private summonerSpellsUrl = '/api/summonerSpells';
+  private baseUrl = 'http://rest-items.research.cloudonix.io/items';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getAllSummoresSpells(): Observable<SummonerSpell[]> {
-  return this.httpClient.get<SummonerSpell[]>(this.summonerSpellsUrl);
+  getProducts(authToken: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${authToken}`
+    });
+
+    return this.http.get<any>(this.baseUrl, { headers });
   }
 }
