@@ -42,7 +42,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/Lol-champions-test/",
+            "baseHref": "/",
             "outputHashing": "none",
             "outputPath": "dist/lol-wiki",
             "index": "src/index.html",
