@@ -37,14 +37,10 @@ This application uses the following key libraries and dependencies:
 "@ngx-translate/core": "^13.0.0",<br>
 "@ngx-translate/http-loader": "^6.0.0",<br>
 "@types/underscore": "^1.11.4",<br>
-"ag-grid-angular": "^24.1.0",<br>
-"ag-grid-community": "^24.1.0",<br>
 "angular-animations": "^0.11.0",<br>
-"angular-in-memory-web-api": "^0.11.0",<br>
 "angular-oauth2-oidc": "^10.0.3",<br>
 "bootstrap": "^4.6.1",<br>
 "bootstrap-icons": "^1.8.2",<br>
-"file-saver": "^2.0.5",<br>
 "font-awesome": "^4.7.0",<br>
 "hammerjs": "^2.0.8",<br>
 "html2canvas": "^1.4.1",<br>
@@ -57,8 +53,6 @@ This application uses the following key libraries and dependencies:
 "ngx-mask": "^12.0.0",<br>
 "ngx-mat-select-search": "^4.0.0",<br>
 "ngx-toastr": "^13.2.1",<br>
-"ngx-ui-loader": "^11.0.0",<br>
-"pdfmake": "^0.2.6",<br>
 "popper.js": "^1.16.1",<br>
 "rxjs": "~6.6.7",<br>
 "tslib": "^2.0.0",<br>
