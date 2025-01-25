@@ -1,34 +1,15 @@
-.container {
-  padding: 20px;
-  margin-top: 8px;
-}
-
-.main-content{
-  background-color: #060E1F;
-}
-
-.center-card{
-  margin-top: 94px !important;
-  max-height: 60% !important;
-}
-
-.text-ajust{
-  color: white;
-}
-
-.margin-ajust {
-  margin-top: 15px !important;
-}
-.margin-ajust-data {
-  margin-top: 6px !important;
-}
-.ajustToobarTitle {
-  margin-left: 5px !important;
-}
-
 form.dynamic-data-table {
   width: 100% !important;
+
+  ::ng-deep .mat-radio-label-content {
+    padding-right: 15px !important;
+  }
 }
+
+::ng-deep .cdk-overlay-pane {
+  width: auto !important;
+}
+
 .dynamic-data-table {
   .mat-toolbar-single-row {
     margin: 5px 0 5px !important;
@@ -41,25 +22,11 @@ form.dynamic-data-table {
     }
   }
 
-  .loading-shade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 56px;
-    right: 0;
-    background: rgba(0, 0, 0, 0.15);
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-  }
-
-  .first-table.stick-container {
+  .stick-container {
     position: relative;
     width: 100% !important;
+    height: calc(100vh - 275px);
     overflow: auto;
-    height: calc(100vh - 270px)!important;
   }
 
   .mat-table-sticky {
@@ -88,7 +55,7 @@ form.dynamic-data-table {
     th.mat-header-cell:first-of-type,
     td.mat-cell:first-of-type,
     td.mat-footer-cell:first-of-type {
-      padding-left: 10px;
+      padding-left: 16px;
     }
 
     th.mat-header-cell:last-of-type,
@@ -99,6 +66,10 @@ form.dynamic-data-table {
       height: 40px !important;
     }
 
+    .mat-row {
+      cursor: pointer;
+    }
+
     .mat-row:nth-child(2n + 1) {
       background-color: #eaeaea !important;
     }
@@ -106,11 +77,16 @@ form.dynamic-data-table {
       background-color: #a7a7a7 !important;
     }
 
+
+    .mat-column-id,
     .mat-column-actions {
-      text-align: right !important;
+      text-align: center !important;
       ::ng-deep .mat-sort-header-container {
-        justify-content: right !important;
+        justify-content: center !important;
       }
+    }
+    .mat-column-actions{
+      width: 100px !important;
     }
 
     .mat-form-field {
@@ -141,33 +117,6 @@ form.dynamic-data-table {
       font-size: 21px;
     }
 
-    tr.mat-header-filter {
-      height: 0 !important;
-      max-height: 55px !important;
-      th.mat-header-cell {
-        padding-right: 5px;
-        padding-bottom: 5px;
-        .filterHeaderCell {
-          padding-bottom: 5px !important;
-        }
-      }
-      .filters-container {
-        text-align: center;
-        overflow: hidden !important;
-        max-height: 0px !important;
-        transition: max-height 0.5s ease-in-out !important;
-        ::ng-deep .mat-form-field-wrapper {
-          margin: 0 !important;
-          padding-bottom: 0 !important;
-        }
-        &.animate {
-          max-height: 55px !important;
-        }
-      }
-      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-        padding: 0.4em 0 0.8em 0 !important;
-      }
-    }
 
     ::ng-deep .mat-input-element::placeholder {
       color: #d1d1d1;
@@ -184,9 +133,10 @@ form.dynamic-data-table {
       -ms-transform: translateY(-1.28125em) scale(0.75) !important;
     }
 
-    .mat-column-expand {
-      padding-right: 10px !important;
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix {
+      top: -0.05em !important;
     }
+
   }
 }
 
@@ -201,25 +151,5 @@ tr.mat-row:hover .mat-cell {
 
 .element-row td {
   border-bottom-width: 0;
-}
-
-.element-detail {
-  overflow: hidden;
-}
-
-.spinnerLoading {
-  box-shadow: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 21px;
-  left: 15px;
-  width: calc(100% - 31px);
-  z-index: 99999;
-  background: #ddddddc4;
-  height: calc(100% - 35px);
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
