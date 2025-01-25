@@ -2,10 +2,10 @@
 The CloudStore is a modern web application developed in Angular to streamline product management for online stores. Integrated with a RESTful service, the application provides an intuitive interface to efficiently and securely view, add, edit, and delete products.
 
 ### Detalhes:
-**Requirements:** Information about what needs to be installed to compile and run the project.
-**Installation and Execution:** Steps to configure and run the application.
-**Authorization:** General instructions for authentication settings, if necessary.
-**Libraries and Tools:** List of all dependencies and their versions, both for production and development.
+**Requirements:** Information about what needs to be installed to compile and run the project.<br>
+**Installation and Execution:** Steps to configure and run the application.<br>
+**Authorization:** General instructions for authentication settings, if necessary.<br>
+**Libraries and Tools:** List of all dependencies and their versions, both for production and development.<br>
 
 ### Prerequisites:
 Before you can run the application, make sure you have the following installed:
@@ -16,7 +16,7 @@ Before you can run the application, make sure you have the following installed:
 After installing the dependencies, you can run the application in development mode. The application will be available on http://localhost:4200/cloud-Store/home
 
 ### Login Process
-Access the login page.
+Access the login page.<br>
 You can use any valid number for the Authorization token; the application will automatically retrieve the correct token for proper functionality.
 
 ### Libraries and Dependencies
