@@ -1,11 +1,10 @@
 {
-  "name": "lol-wiki",
+  "name": "cloud-store",
   "version": "1.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href /Lol-champions-test/",
-    "deploy": "npx gh-pages -d dist/lol-wiki"
+    "build": "ng build --prod --base-href /cloud-Store/"
   },
   "private": true,
   "dependencies": {
@@ -62,7 +61,6 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
-    "gh-pages": "^6.1.1",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  appTitle = 'LOL Wiki';
+  appTitle = 'Cloud-Store Manager';
 
   constructor(
     public router: Router,

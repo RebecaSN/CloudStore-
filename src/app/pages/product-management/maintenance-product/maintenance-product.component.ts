@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CurrencyMaskInputMode } from 'ngx-currency';
@@ -15,14 +15,15 @@ import { ProductService } from 'src/app/core/services/pages/product-managment/pr
 export class MaintenanceProductComponent implements OnInit {
 
   productFormGroup: FormGroup;
+
+  payValueCurrencyMaskOptions: {};
+  objectData: ProductManager
   typeData: Profile[] = [
     { type: 'furniture' },
     { type: 'equipment' },
     { type: 'stationary' },
     { type: 'part' }
-  ];
-
-  payValueCurrencyMaskOptions: {};
+  ];;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ProductManager,
@@ -35,7 +36,7 @@ export class MaintenanceProductComponent implements OnInit {
   ) {
     this.payValueCurrencyMaskOptions = {
       align: 'left',
-      allowNegative: true,
+      allowNegative: false,
       allowZero: true,
       decimal: ',',
       precision: 2,
@@ -52,6 +53,10 @@ export class MaintenanceProductComponent implements OnInit {
   ngOnInit() {
     this.createFormGroup(this.data);
     console.log(this.data);
+
+    setTimeout(() => {
+      this.changeDetectorRef.detectChanges();
+    }, 0);
   }
 
   ngAfterViewChecked(): void {
@@ -59,23 +64,28 @@ export class MaintenanceProductComponent implements OnInit {
   }
 
   createFormGroup(data?: ProductManager): void {
+    const customPropertiesArray = data?.profile
+    ? Object.keys(data.profile)
+        .filter(key => !['type', 'backlog', 'available'].includes(key)) // Exclui as propriedades padrão
+        .map(key => ({ key, value: data.profile[key] }))
+    : [];
+
     this.productFormGroup = this.formBuilder.group({
       name: [data?.name || '', [Validators.required, Validators.maxLength(100)]],
       description: [data?.description || '', [Validators.required, Validators.maxLength(255)]],
       cost: [data?.cost || '', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
-      sku:[data?.sku || '', [Validators.required, Validators.maxLength(100)]],
+      sku: [data?.sku || '', [Validators.required, Validators.maxLength(100)]],
 
+      profile: this.formBuilder.group({//
+      type: [data?.profile?.type || 'furniture', [Validators.required]],
+      backlog: [data?.profile?.backlog || null, [Validators.pattern('^[0-9]*$')]],
+      available: [data?.profile?.available ?? true, [Validators.required]],
 
-      profile: this.formBuilder.group({
-        type: [data?.profile?.type || 'furniture', [Validators.required]],
-        backlog: [data?.profile?.backlog || null, [Validators.pattern('^[0-9]*$')]],
-        available: [data?.profile?.available ?? true, [Validators.required]],
-        customProperties: this.formBuilder.array(
-          data?.profile?.customProperties?.map(prop => this.createCustomPropertyGroup(prop)) || []
-        ),
-      }),
-
-    });
+      customProperties: this.formBuilder.array(
+        customPropertiesArray.map(prop => this.createCustomPropertyGroup(prop)) || []
+      ),
+    }),
+  });
   }
 
   createCustomPropertyGroup(property?: { key: string; value: string }): FormGroup {
@@ -84,7 +94,6 @@ export class MaintenanceProductComponent implements OnInit {
       value: [property?.value || '', [Validators.required]],
     });
   }
-
 
   get customProperties(): FormArray {
     return this.productFormGroup.get('profile.customProperties') as FormArray;
@@ -103,7 +112,6 @@ export class MaintenanceProductComponent implements OnInit {
   }
 
   save(): void {
-
     const customProperties = this.productFormGroup.get('profile.customProperties').value.reduce((acc, property) => {
       if (property.key && property.value) {
         acc[property.key] = property.value;
@@ -111,23 +119,40 @@ export class MaintenanceProductComponent implements OnInit {
       return acc;
     }, {});
 
-    let product: ProductManager = {
-      name: this.productFormGroup.get('name').value,
-      description: this.productFormGroup.get('description').value,
-      cost: this.productFormGroup.get('cost').value,
+    if(this.data !== null){
+      this.objectData = {
+        name: this.productFormGroup.get('name').value,
+        description: this.productFormGroup.get('description').value,
+        cost: this.productFormGroup.get('cost').value,
 
-      profile: {
-        type: this.productFormGroup.get('profile').get('type').value,
-        backlog: this.productFormGroup.get('profile').get('backlog').value,
-        available: this.productFormGroup.get('profile').get('available').value,
-        ...customProperties
+        profile: {
+          type: this.productFormGroup.get('profile').get('type').value,
+          backlog: this.productFormGroup.get('profile').get('backlog').value,
+          available: this.productFormGroup.get('profile').get('available').value,
+          ...customProperties
+        }
       }
 
+    }else{
+      this.objectData = {
+        name: this.productFormGroup.get('name').value,
+        description: this.productFormGroup.get('description').value,
+        cost: this.productFormGroup.get('cost').value,
+        sku: this.productFormGroup.get('sku').value,
+
+        profile: {
+          type: this.productFormGroup.get('profile').get('type').value,
+          backlog: this.productFormGroup.get('profile').get('backlog').value,
+          available: this.productFormGroup.get('profile').get('available').value,
+          ...customProperties
+        }
+      }
     }
-    console.log(product);
+
+    console.log(this.objectData);
 
     if(this.data === null ){
-      this.productService.createProduct(product).subscribe({
+      this.productService.createProduct(this.objectData).subscribe({
         next: (result) => {
           if (result) {
             this.toastr.success('Product successfully created!', 'Success');
@@ -135,12 +160,12 @@ export class MaintenanceProductComponent implements OnInit {
           }
         },
         error: (err) => {
-          this.toastr.error('An error occurred while creating the product. Please try again.', 'Error'+ err);
+          this.toastr.error('An error occurred while creating the product. Please try again.', 'Error'+ err.message);
         }
       });
 
     }else{
-      this.productService.editProduct(this.data.id, product).subscribe({
+      this.productService.editProduct(this.data.id, this.objectData).subscribe({
         next: (result) => {
           if (result) {
             this.toastr.success('Product successfully updated!', 'Success');
@@ -148,7 +173,7 @@ export class MaintenanceProductComponent implements OnInit {
           }
         },
         error: (err) => {
-          this.toastr.error('An error occurred while updating the product. Please try again.', 'Error: ' + err);
+          this.toastr.error('An error occurred while updating the product. Please try again.', 'Error: ' + err.message);
         }
       });
     }

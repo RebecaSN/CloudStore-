@@ -1,15 +1,12 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from 'src/app/pages/home/home.component';
-import { ProductManagementComponent } from 'src/app/pages/product-management/product-management.component';
 import { AuthGuard } from '../../guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     canActivate: [AuthGuard],
-    component: HomeComponent,
     children: [
       {
         path: '',
@@ -23,7 +20,6 @@ const routes: Routes = [
   {
     path: 'product-management',
     canActivate: [AuthGuard],
-    component: ProductManagementComponent,
     children: [
       {
         path: '',
@@ -34,6 +30,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

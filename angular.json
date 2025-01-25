@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lol-wiki": {
+    "cloud-Store": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -42,9 +42,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/",
+            "baseHref": "/cloud-Store/",
             "outputHashing": "none",
-            "outputPath": "dist/lol-wiki",
+            "outputPath": "dist/cloud-Store",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -161,24 +161,24 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "lol-wiki:build"
+            "browserTarget": "cloud-Store:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "lol-wiki:build:production"
+              "browserTarget": "cloud-Store:build:production"
             },
             "dev": {
-              "browserTarget": "lol-wiki:build:production"
+              "browserTarget": "cloud-Store:build:production"
             },
             "homolog": {
-              "browserTarget": "lol-wiki:build:production"
+              "browserTarget": "cloud-Store:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lol-wiki:build"
+            "browserTarget": "cloud-Store:build"
           }
         },
         "test": {
@@ -216,16 +216,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "lol-wiki:serve"
+            "devServerTarget": "cloud-Store:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "lol-wiki:serve:production"
+              "devServerTarget": "cloud-Store:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "lol-wiki"
+  "defaultProject": "cloud-Store"
 }

@@ -16,11 +16,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { AgGridModule } from 'ag-grid-angular';
-
 import { NgxCurrencyModule } from 'ngx-currency';
 import { registerLocaleData } from '@angular/common';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataServiceService } from './core/services/pages/inMemoryDataService.service';
 
 registerLocaleData(localept, 'pt');
 
@@ -64,7 +61,6 @@ const maskConfig: Partial<IConfig> = {
     }),
     NgxCurrencyModule,
     AgGridModule,
-    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataServiceService, { delay: 500 })
   ],
 
   bootstrap: [AppComponent],

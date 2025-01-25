@@ -12,6 +12,7 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DynamicInputModule } from '../components/dynamic-input/dynamic-input.module';
 import { DynamicSelectModule } from '../components/dynamic-select/dynamic-select.module';
+import { CustomPropertiesEditorModule } from '../components/custom-properties-editor/custom-properties-editor.module';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { DynamicSelectModule } from '../components/dynamic-select/dynamic-select
 
     DynamicInputModule,
     DynamicSelectModule,
+    CustomPropertiesEditorModule
   ],
 
   declarations: [

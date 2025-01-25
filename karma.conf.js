@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated tracess
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/lol-wiki'),
+      dir: require('path').join(__dirname, './coverage/cloud-Store'),
       subdir: '.',
       reporters: [
         { type: 'html' },
