@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
+import { ProductManager } from 'src/app/core/models/pages/product-manager/product-manager';
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +26,14 @@ export class ProductService {
     return this.http.get<any>(this.apiUrl, { headers });
   }
 
-  createProduct(product: any): Observable<any> {
+  createProduct(product: ProductManager): Observable<any> {
     const authKey = this.authService.getAuthKey();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${authKey}`);
 
     return this.http.post<any>(this.apiUrl, product, { headers });
   }
 
-  editProduct(productId: number, updatedProduct: any): Observable<any> {
+  editProduct(productId: number, updatedProduct: ProductManager): Observable<any> {
     const authKey = this.authService.getAuthKey();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${authKey}`);
     const url = `${this.apiUrl}/${productId}`;

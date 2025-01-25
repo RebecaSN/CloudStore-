@@ -356,9 +356,9 @@ h5,
     }
   }
 
-  app-delete-product  {
+  app-delete-product{
     form {
-      width: 35vw;
+      width: 25vw !important;
     }
   }
 
@@ -375,6 +375,13 @@ h5,
   }
 
 }
+
+app-view-product{
+  .container {
+    min-height: calc(100vh - 530px) !important;
+  }
+}
+
 
 table {
   ::ng-deep .mat-sort-header-container {

@@ -8,7 +8,6 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
- // userLogin: { userName: string; password: string } = { userName: '', password: '' };
 
   authKey: string = '';
   isLoading: boolean = false;
@@ -35,14 +34,11 @@ export class AuthComponent implements OnInit {
 
     this.authService.validateAuthToken(this.authKey).subscribe(
       () => {
-        // Token válido: Salva no localStorage e redireciona
-        localStorage.setItem('authKey', this.authKey); // Armazena o token apenas após validação
+        localStorage.setItem('authKey', this.authKey);
         this.router.navigate(['/home']);
       },
       (error) => {
-        // Token inválido: Mostra alerta
         alert('Invalid authorization token.');
-        console.error('Login error:', error);
       }
     ).add(() => {
       this.isLoading = false;

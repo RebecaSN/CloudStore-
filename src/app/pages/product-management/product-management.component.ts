@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { catchError, finalize, map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { fadeInOut } from 'src/app/core/services/utilities/animations.service';
 import { TableBtn } from '../components/interface/table/table-btn';
@@ -10,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MaintenanceProductComponent } from './maintenance-product/maintenance-product.component';
 import { ViewProductComponent } from './view-product/view-product.component';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-management',
@@ -23,7 +25,7 @@ export class ProductManagementComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   displayedColumns: string[] = [
-    'index',
+    'id',
     'sku',
     'name',
     'cost',
@@ -32,12 +34,14 @@ export class ProductManagementComponent implements OnInit {
 
   dataSource: MatTableDataSource<ProductManager>;
   isLoadingResults = false;
+  isLoadingResultsFilter = false;
   buttons: TableBtn[];
 
 
   constructor(
     private productService: ProductService,
     public dialog: MatDialog,
+    private toastr: ToastrService,
   ) {
     this.dataSource = new MatTableDataSource<ProductManager>();
 
@@ -84,14 +88,21 @@ export class ProductManagementComponent implements OnInit {
   }
 
   loadDataSource():void{
-    this.productService.getProducts().subscribe(result =>{
-      console.log(result)
-      this.dataSource = new MatTableDataSource<ProductManager>(result);
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-
-    });
+    this.isLoadingResults = true;
+    this.productService.getProducts().pipe(
+      map((data: ProductManager[]) => {
+        this.dataSource = new MatTableDataSource<ProductManager>(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }),
+      catchError(err => {
+        this.toastr.error('Failed to load products. Please try again.', 'Error' + err);
+        return [];
+      }),
+      finalize(() => {
+        this.isLoadingResults = false;
+      })
+    ).subscribe();
   }
 
   buttonClick(result): void {
@@ -113,7 +124,8 @@ export class ProductManagementComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.paginator.firstPage();
+        this.loadDataSource();
+        //this.paginator.firstPage();
       }
     });
 
@@ -128,7 +140,8 @@ export class ProductManagementComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.paginator.firstPage();
+        this.loadDataSource();
+       // this.paginator.firstPage();
       }
     });
 
@@ -158,8 +171,7 @@ export class ProductManagementComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
-        console.log('Deleted');
-        this.paginator.firstPage();
+        //this.paginator.firstPage();
         this.loadDataSource();
       }
     });

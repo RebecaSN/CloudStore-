@@ -1,5 +1,5 @@
 <div class="page-header" filter-color="orange">
-  <div class="page-header-image" ></div><!--style="background-image:url(assets/images/01.jpg)"-->
+  <div class="page-header-image" ></div>
   <div class="container">
     <div class="col-md-4 content-center login">
       <div class="card card-login card-plain">
@@ -16,16 +16,22 @@
                 <span class="input-group-text"> <i class="now-ui-icons users_single-02"></i></span>
               </div>
 
-              <input type="text" id="auth-key" name="authKey" placeholder="Authorization Token"
+              <input
+                type="text"
+                id="auth-key"
+                name="authKey"
+                placeholder="Authorization Token"
                 class="form-control"
                 [(ngModel)]="authKey"
                 required
+                minlength="1"
                 (focus)="focus2 = true"
                 (blur)="focus2 = false"
               />
               <span class="invalid-feedback" *ngIf="f.submitted && !authKey">
                 Authorization Token is required
               </span>
+
             </div>
           </div>
           <div class="footer text-center">
@@ -38,7 +44,7 @@
           <div class="version">
             <div>
               <p>WEB v.1.0</p>
-              <p>&copy; Todos os direitos reservados</p>
+              <p>&copy; All rights reserved </p>
             </div>
           </div>
         </form>

@@ -4,5 +4,6 @@ export class Profile {
   backlog?: number;
   opkpo?: string;
   test?: string;
+  customProperties?: { key: string; value: string }[];
 
 }
