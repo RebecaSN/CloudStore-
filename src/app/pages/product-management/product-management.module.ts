@@ -5,7 +5,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from 'src/app/core/modules/angular-material/angular-material.module';
 import { DynamicPanelBodyModule } from '../components/dynamic-panel-body/dynamic-panel-body.module';
 import { ProductManagementComponent } from './product-management.component';
-import { AgGridModule } from 'ag-grid-angular';
 import { MaintenanceProductComponent } from './maintenance-product/maintenance-product.component';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { ViewProductComponent } from './view-product/view-product.component';
@@ -25,7 +24,6 @@ import { CustomPropertiesEditorModule } from '../components/custom-properties-ed
 
     AngularMaterialModule,
     DynamicPanelBodyModule,
-    AgGridModule.withComponents([]),
 
     DynamicInputModule,
     DynamicSelectModule,

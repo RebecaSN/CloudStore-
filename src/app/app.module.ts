@@ -13,9 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
-import { AgGridModule } from 'ag-grid-angular';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { registerLocaleData } from '@angular/common';
 
@@ -56,11 +54,7 @@ const maskConfig: Partial<IConfig> = {
     }),
 
     NgxMaskModule.forRoot(maskConfig),
-    NgxUiLoaderHttpModule.forRoot({
-      showForeground: true,
-    }),
     NgxCurrencyModule,
-    AgGridModule,
   ],
 
   bootstrap: [AppComponent],

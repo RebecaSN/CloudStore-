@@ -111,17 +111,27 @@
         </div>
       </div>
 
-      <!-- <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="5px">
+      <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="5px">
         <div fxFlex="100" fxFlex.sm="100">
           <div formArrayName="customProperties">
-            <app-custom-properties-editor
-              [customProperties]="customProperties"
-              (addCustomProperty)="addCustomProperty()"
-              (removeCustomProperty)="removeCustomProperty($event)">
-            </app-custom-properties-editor>
+            <div fxLayout="row" *ngFor="let customProperty of customProperties.controls; let i = index" [formGroupName]="i">
+
+              <mat-form-field fxFlex="40">
+                <input matInput formControlName="key" placeholder="Name new property" type="text" [readonly]="this.data !== null">
+              </mat-form-field>
+
+              <mat-form-field fxFlex="40">
+                <input matInput formControlName="value" placeholder="Value new property" type="text">
+              </mat-form-field>
+
+              <button fxFlex="20" mat-icon-button (click)="removeCustomProperty(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+            <button mat-raised-button color="primary" [disabled]="this.data !== null" (click)="addCustomProperty()">Add Custom Property</button>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
 
   </mat-dialog-content>

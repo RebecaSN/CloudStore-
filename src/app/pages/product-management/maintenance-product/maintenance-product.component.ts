@@ -66,7 +66,7 @@ export class MaintenanceProductComponent implements OnInit {
   createFormGroup(data?: ProductManager): void {
     const customPropertiesArray = data?.profile
     ? Object.keys(data.profile)
-        .filter(key => !['type', 'backlog', 'available'].includes(key)) // Exclui as propriedades padrão
+        .filter(key => !['type', 'backlog', 'available'].includes(key))
         .map(key => ({ key, value: data.profile[key] }))
     : [];
 
@@ -76,8 +76,8 @@ export class MaintenanceProductComponent implements OnInit {
       cost: [data?.cost || '', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
       sku: [data?.sku || '', [Validators.required, Validators.maxLength(100)]],
 
-      profile: this.formBuilder.group({//
-      type: [data?.profile?.type || 'furniture', [Validators.required]],
+      profile: this.formBuilder.group({
+      type: [data?.profile?.type ? data.profile.type : 'furniture', [Validators.required]],
       backlog: [data?.profile?.backlog || null, [Validators.pattern('^[0-9]*$')]],
       available: [data?.profile?.available ?? true, [Validators.required]],
 
@@ -90,8 +90,8 @@ export class MaintenanceProductComponent implements OnInit {
 
   createCustomPropertyGroup(property?: { key: string; value: string }): FormGroup {
     return this.formBuilder.group({
-      key: [property?.key || '', [Validators.required]],
-      value: [property?.value || '', [Validators.required]],
+      key: [property?.key || '', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      value: [property?.value || '', [Validators.required, Validators.pattern('^[A-Za-z]+$')] ],
     });
   }
 
@@ -99,12 +99,20 @@ export class MaintenanceProductComponent implements OnInit {
     return this.productFormGroup.get('profile.customProperties') as FormArray;
   }
 
+  isKeyReadonly(customProperty: FormGroup): boolean {
+    return this.data !== null && !!customProperty.get('key').value;
+  }
+
   addCustomProperty(): void {
     this.customProperties.push(this.createCustomPropertyGroup());
   }
 
   removeCustomProperty(index: number): void {
-    this.customProperties.removeAt(index);
+    const customPropertiesControl = this.productFormGroup.get('profile.customProperties') as FormArray;
+  customPropertiesControl.removeAt(index);
+
+
+  this.changeDetectorRef.detectChanges();
   }
 
   public getFormControl(ctrl: string): FormControl {
