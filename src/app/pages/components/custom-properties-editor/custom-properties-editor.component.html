@@ -1,0 +1,16 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="5px">
+  <div fxFlex="40" *ngFor="let customProperty of customProperties.controls; let i = index" [formGroupName]="i">
+    <mat-form-field>
+      <input matInput formControlName="key" placeholder="Name new property" />
+    </mat-form-field>
+  </div>
+  <div fxFlex="40" *ngFor="let customProperty of customProperties.controls; let i = index" [formGroupName]="i">
+    <mat-form-field>
+      <input matInput formControlName="value" placeholder="Value new property" />
+    </mat-form-field>
+    <button mat-icon-button (click)="removeCustomProperty(i)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
+<button mat-raised-button color="primary" (click)="addCustomProperty()">Add Custom Property</button>

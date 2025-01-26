@@ -6,11 +6,11 @@
     <input
       matInput
       [type]="inputType"
+      [readonly]="isReadonly"
       [placeholder]="inputPlaceholder"
       [formControl]="inputFormControl"
       [attr.disabled]="isDisabled"
       [required]="isRequired"
-      [readonly]="isReadonly"
       spellcheck="false"
       autocomplete="off"
       [mask]="maskInput"

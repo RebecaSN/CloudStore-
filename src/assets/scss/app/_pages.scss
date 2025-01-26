@@ -121,9 +121,9 @@ h5,
     background-color: #087189ad;
   }
 
-  app-view-champion,
-  app-delete-champion,
-  app-edit-champion {
+  app-maintenance-product,
+  app-delete-product,
+  app-view-product {
     .mat-raised-button {
       font-size: 12px;
     }
@@ -350,25 +350,38 @@ h5,
   }
 
 
-  app-delete-champion {
+  app-delete-product {
     [mat-dialog-title] {
       background: #d60 !important;
     }
   }
 
-  app-delete-champion  {
+  app-delete-product{
     form {
-      width: 35vw;
+      width: 25vw !important;
     }
   }
-  app-edit-champion,
-  app-view-champion {
+
+  app-view-product{
     form {
-      width: 20vw;
+      width: 50vw;
+    }
+  }
+
+  app-maintenance-product {
+    form {
+      width: 40vw;
     }
   }
 
 }
+
+app-view-product{
+  .container {
+    min-height: calc(100vh - 530px) !important;
+  }
+}
+
 
 table {
   ::ng-deep .mat-sort-header-container {

@@ -1,0 +1,81 @@
+<h2 mat-dialog-title>{{ 'Vizualização do Produto' }}</h2>
+
+<form class="app-view-compare">
+  <mat-dialog-content class="mat-typography" fxLayout="column">
+    <div class="container">
+      <mat-card class="mat-elevation-z0">
+        <mat-card-content>
+          <div fxFlex fxLayout="column" fxLayoutGap="10px">
+            <div>
+              <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="15px" fxLayoutAlign="center">
+                <div fxFlex="100">
+                  <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel [expanded]="true" class="mat-elevation-z8">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Product Details
+                        </mat-panel-title>
+                        <mat-panel-description></mat-panel-description>
+                      </mat-expansion-panel-header>
+
+                      <mat-nav-list [disableRipple]="true">
+                        <mat-list-item>
+                          <div>{{'Id'}}</div>
+                          <div >{{this.data.id}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <div>{{'Name'}}</div>
+                          <div >{{this.data.name}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <div>{{'Price'}}</div>
+                          <div >{{this.data.cost | currency}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <div>{{'Description'}}</div>
+                          <div >{{this.data.description}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <div>{{'SKU'}}</div>
+                          <div >{{this.data.sku}}</div>
+                        </mat-list-item>
+                      </mat-nav-list>
+
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+
+                <div fxFlex="100">
+                  <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel [expanded]="true" class="mat-elevation-z8">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Product Profile
+                        </mat-panel-title>
+                        <mat-panel-description></mat-panel-description>
+                      </mat-expansion-panel-header>
+
+                      <mat-nav-list [disableRipple]="true">
+                        <mat-list-item>
+                          <div>{{'Type'}}</div>
+                          <div >{{this.data?.profile?.type}}</div>
+                        </mat-list-item>
+                      </mat-nav-list>
+
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row">
+    <div fxFlex align="end">
+      <button mat-raised-button mat-dialog-close class="defaul">{{'Close'}}</button>
+    </div>
+  </mat-dialog-actions>
+</form>

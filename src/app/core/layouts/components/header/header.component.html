@@ -1,8 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
   <div class="container-fluid">
     <div class="navbar-wrapper">
+      <div class="navbar-toggle">
+        <button type="button" class="navbar-toggler" (click)="sidebarToggle()">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
     </div>
-    <button class="navbar-toggler" type="button"
+    <button class="navbar-toggler" type="button" (click)="collapse()" [attr.aria-expanded]="!isCollapsed"
       aria-controls="collapseExample">
       <span class="navbar-toggler-bar navbar-kebab"></span>
       <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -14,15 +21,15 @@
         <li class="nav-item">
           <mat-nav-list class="list-horizontal">
             <mat-list-item>
-              <button mat-menu-item matTooltip="Active User!">
+              <button mat-menu-item [matMenuTriggerFor]="claimsmenu">
                 <mat-icon fontSet="fa" fontIcon="fa-user"></mat-icon>
-                 Your Name
+                Your Name Here
               </button>
             </mat-list-item>
             <mat-menu #claimsmenu="matMenu" [overlapTrigger]="false">
-              <button mat-menu-item >
+              <button mat-menu-item (click)="logout()">
                 <mat-icon fontSet="fa" fontIcon="fa-sign-out"></mat-icon>
-
+                Logout
               </button>
             </mat-menu>
           </mat-nav-list>

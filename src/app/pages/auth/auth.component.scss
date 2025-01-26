@@ -1,0 +1,28 @@
+::ng-deep .login-page .login .card-login {
+  max-width: 340px!important;
+}
+
+::ng-deep .login-page .login .card-login .logo-container {
+  width: 300px !important;
+  margin: 0 auto;
+  margin-bottom: 55px;
+}
+
+.footer {
+  padding: 0;
+}
+
+.version {
+  font-size: 10px!important;
+  p {
+    margin: 0!important;
+  }
+}
+
+.input-group:not(.has-validation)
+  > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu),
+.input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n + 3) {
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
